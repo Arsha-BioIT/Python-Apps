@@ -1,20 +1,53 @@
 Flask Web App Setup
 
-Uses Flask to create a web application with endpoints for uploading files, normalizing data, and visualizing results.
-File Upload Handling (/upload)
+This Flask-based web application allows users to upload CSV files, apply normalization techniques to data, and visualize results.
+
+Features
+
+1. File Upload Handling (/upload)
 
 Accepts CSV file uploads.
-Reads the CSV file using Pandas.
-Extracts column names and passes them to an HTML template for selection.
-Normalization (/normalize)
 
-Applies various normalization techniques (MinMax, Standard, Robust, etc.).
-Handles transformations like log, square root, Box-Cox, and Yeo-Johnson.
-Saves the transformed data as a CSV file and allows users to download it.
-Visualization (/visualize)
+Reads the CSV file using Pandas.
+
+Extracts column names and passes them to an HTML template for selection.
+
+2. Normalization (/normalize)
+
+Applies various normalization techniques:
+
+MinMax Scaling
+
+Standard Scaling
+
+Robust Scaling
+
+MaxAbs Scaling
+
+Quantile Transformation
+
+Log Transformation
+
+Square Root Transformation
+
+Box-Cox Transformation
+
+Yeo-Johnson Transformation
+
+Saves the transformed data as a CSV file.
+
+Allows users to download the normalized file.
+
+3. Visualization (/visualize)
 
 Generates histograms for a selected column.
-Converts the plot to a Base64-encoded image and renders it in an HTML template.
-Ensures Safe File Storage
 
-Stores uploaded files in an uploads folder (created automatically if missing).
+Converts the plot to a Base64-encoded image.
+
+Renders the histogram in an HTML template.
+
+4. Ensures Safe File Storage
+
+Stores uploaded files in an uploads/ folder.
+
+Automatically creates the folder if it is missing.
