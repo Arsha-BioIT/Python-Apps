@@ -1,0 +1,47 @@
+import streamlit as st
+
+# Set the title of the app
+st.title("Personalized Greeting App with Information Slider")
+
+# Create a sidebar for user input
+st.sidebar.header("User Input")
+
+# Get user input
+name = st.sidebar.text_input("Enter your name:")
+age = st.sidebar.number_input("Enter your age:", min_value=0, max_value=120, step=1)
+
+# Information snippets
+snippets = [
+    "Snippet 1: Did you know that the average human lifespan is around 72 years?",
+    "Snippet 2: The oldest recorded person lived to be 122 years old!",
+    "Snippet 3: Regular exercise can increase your lifespan significantly.",
+    "Snippet 4: Eating a balanced diet is crucial for a long and healthy life.",
+    "Snippet 5: Staying socially active can help improve your mental health."
+]
+
+# Initialize session state for the current snippet index
+if 'snippet_index' not in st.session_state:
+    st.session_state.snippet_index = 0
+
+# Display the current snippet
+st.write(snippets[st.session_state.snippet_index])
+
+# Create buttons for navigation in a single row
+col1, col2 = st.columns([1, 1])
+with col1:
+    if st.button("← Previous"):
+        if st.session_state.snippet_index > 0:
+            st.session_state.snippet_index -= 1
+with col2:
+    if st.button("Next →"):
+        if st.session_state.snippet_index < len(snippets) - 1:
+            st.session_state.snippet_index += 1
+
+# Display the greeting only when both fields are filled
+if name and age:
+    if st.sidebar.button("Submit"):
+        st.success(f"Hello, {name}! You are {age} years old.")
+        years_to_100 = 100 - age
+        st.write(f"You will turn 100 years old in {years_to_100} years.")
+else:
+    st.sidebar.warning("Please enter both your name and age before submitting.")
